@@ -29,7 +29,7 @@ class TranslucentOverlayStyleManager: OverlayStyleManager {
     didSet {
       if let controlView = controlView {
         controlView.fillSuperviewHorizontally()
-        controlView.centerYAnchor.constraint(equalTo: controlView.superview!.centerYAnchor)
+        controlView.centerYAnchor.constraint(equalTo: controlView.superview!.centerYAnchor).isActive = true
       }
     }
   }
