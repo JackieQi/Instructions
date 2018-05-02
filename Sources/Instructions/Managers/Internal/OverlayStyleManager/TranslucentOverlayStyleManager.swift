@@ -25,7 +25,14 @@ import UIKit
 class TranslucentOverlayStyleManager: OverlayStyleManager {
     // MARK: Properties
     weak var overlayView: OverlayView?
-
+  weak var controlView: UIView? {
+    didSet {
+      if let controlView = controlView {
+        overlayView?.bringSubview(toFront: controlView)
+        controlView.fillSuperview()
+      }
+    }
+  }
     // MARK: Private Properties
     private var onGoingTransition = false
     private let color: UIColor

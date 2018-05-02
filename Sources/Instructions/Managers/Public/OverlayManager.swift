@@ -146,17 +146,17 @@ public class OverlayManager {
     private func updateDependencies(of overlayAnimator: BlurringOverlayStyleManager) {
         overlayAnimator.overlayView = self.overlayView
         overlayAnimator.snapshotDelegate = self.delegate
+      
     }
 
     private func updateDependencies(of overlayAnimator: TranslucentOverlayStyleManager) {
         overlayAnimator.overlayView = self.overlayView
+        overlayAnimator.controlView = centralControlView
     }
 
     private func updateOverlayStyleManager() -> OverlayStyleManager {
-      if let view = centralControlView {
-        view.translatesAutoresizingMaskIntoConstraints = false
-        overlayView.addSubview(view)
-      }
+        addCentralControlView()
+      
         if let style = blurEffectStyle {
             let blurringOverlayStyleManager = BlurringOverlayStyleManager(style: style)
             self.updateDependencies(of: blurringOverlayStyleManager)
@@ -166,7 +166,16 @@ public class OverlayManager {
             self.updateDependencies(of: translucentOverlayStyleManager)
             return translucentOverlayStyleManager
         }
+      
+      
     }
+  
+  private func addCentralControlView() {
+    if let view = centralControlView {
+      view.translatesAutoresizingMaskIntoConstraints = false
+      overlayView.addSubview(view)
+    }
+  }
 }
 
 // swiftlint:disable class_delegate_protocol
