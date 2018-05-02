@@ -99,10 +99,6 @@ public class OverlayManager {
     public var centralControlView: UIView?
     // MARK: - Private Properties
     private lazy var overlayStyleManager: OverlayStyleManager = {
-      if let view = centralControlView {
-        view.translatesAutoresizingMaskIntoConstraints = false
-        overlayView.addSubview(view)
-      }
         return self.updateOverlayStyleManager()
     }()
 
@@ -157,6 +153,10 @@ public class OverlayManager {
     }
 
     private func updateOverlayStyleManager() -> OverlayStyleManager {
+      if let view = centralControlView {
+        view.translatesAutoresizingMaskIntoConstraints = false
+        overlayView.addSubview(view)
+      }
         if let style = blurEffectStyle {
             let blurringOverlayStyleManager = BlurringOverlayStyleManager(style: style)
             self.updateDependencies(of: blurringOverlayStyleManager)
