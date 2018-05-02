@@ -28,8 +28,7 @@ class TranslucentOverlayStyleManager: OverlayStyleManager {
   weak var controlView: UIView? {
     didSet {
       if let controlView = controlView {
-        overlayView?.bringSubview(toFront: controlView)
-        controlView.fillSuperview()
+        controlView.fillSuperviewHorizontally()
       }
     }
   }
@@ -98,6 +97,10 @@ class TranslucentOverlayStyleManager: OverlayStyleManager {
                 overlay.backgroundColor = UIColor.clear
             } else {
                 self.overlayLayer.removeFromSuperlayer()
+            }
+          
+            if let controlView = self.controlView {
+              self.overlayView?.bringSubview(toFront: controlView)
             }
             completion?(success)
         })
