@@ -173,6 +173,7 @@ public class OverlayManager {
   private func addCentralControlView() {
     if let view = centralControlView {
       view.translatesAutoresizingMaskIntoConstraints = false
+      view.alpha = 0
       overlayView.addSubview(view)
     }
   }
