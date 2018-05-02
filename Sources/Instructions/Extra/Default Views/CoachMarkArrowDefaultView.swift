@@ -32,14 +32,17 @@ public class CoachMarkArrowDefaultView: UIImageView, CoachMarkArrowView {
 
         if orientation == .top {
             image = UIImage(namedInInstructions: "arrow-top")
-            highlightedImage = UIImage(namedInInstructions: "arrow-top-highlighted")
+            let temp = UIImage(namedInInstructions: "arrow-top-highlighted")
+            highlightedImage = temp?.withRenderingMode(.alwaysTemplate)
         } else {
             image = UIImage(namedInInstructions: "arrow-bottom")
-            highlightedImage = UIImage(namedInInstructions: "arrow-bottom-highlighted")
+            let temp = UIImage(namedInInstructions: "arrow-bottom-highlighted")
+            highlightedImage = temp?.withRenderingMode(.alwaysTemplate)
         }
-
+      
         super.init(image: image, highlightedImage: highlightedImage)
-
+        tintColor = UIColor(red: 2/255, green: 214/255, blue: 230/255, alpha: 1.0)
+      
         initializeConstraints()
     }
 
