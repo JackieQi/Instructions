@@ -96,8 +96,13 @@ public class OverlayManager {
 
     internal lazy var overlayView: OverlayView = OverlayView()
 
+    public var centralControlView: UIView?
     // MARK: - Private Properties
     private lazy var overlayStyleManager: OverlayStyleManager = {
+      if let view = centralControlView {
+        view.translatesAutoresizingMaskIntoConstraints = false
+        overlayView.addSubview(view)
+      }
         return self.updateOverlayStyleManager()
     }()
 
